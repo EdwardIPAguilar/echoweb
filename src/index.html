@@ -56,7 +56,7 @@
     <div class="flex flex-col flex-grow"> 
         <div class="flex flex-row justify-center mt-5">
             <div class="bg-white max-w-xs py-2 flex items-center justify-center flex-row rounded-full shadow-md ring-2 ring-slate-700 ring-inset">
-                <span class="mx-5 text-xl sm:text-md lg:text-xl font-normal text-[#ff4f00]">εcho ™</span>
+                <span class="mx-5 text-xl sm:text-md lg:text-xl font-normal text-[#ff4f00]">εcho</span>
             </div>
         </div>
     
@@ -70,8 +70,8 @@
                     <span class="leading-8 text-lg sm:text-lg lg:text-xl font-light text-gray-200">The hearing aid was invented 125 years ago, with little innovation since. <b>Echo</b> is leveraging the cutting-edge of artificial intelligence and augmented reality to bring the deaf and hard of hearing a fundamentally new solution. Watch the unveiling:</span>    
                 </div>
                 <div class="space-x-2 flex flex-row">
-                    <label for="email-address" class="sr-only">Email Address</label>
-                    <input id="email-address" name="email" autocomplete="email" required class="text-md flex-auto rounded-md border-0 bg-white px-3.5 py-3 shadow-md ring-1 ring-inset ring-white/10 focus:ring-inset focus:ring-indigo-500" placeholder="Enter Your Email Here">
+                        <label for="email-address" class="sr-only">Email Address</label>
+                        <input id="email-address" name="email" autocomplete="email" required class="text-md flex-auto rounded-md border-0 bg-white px-3.5 py-3 shadow-md ring-1 ring-inset ring-white/10 focus:ring-inset focus:ring-indigo-500" placeholder="Enter Your Email Here">
                     <button type="submit" id="rsvp-button" class="flex-none rounded-md bg-[#ff4f00] hover:bg-slate-700 px-3.5 text-lg py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-normal">RSVP</button>
                 </div>
             </div>
@@ -81,11 +81,31 @@
             <div class="bg-white w-md py-2 flex items-center justify-center flex-row shadow-md ring-2 ring-slate-700 ring-inset">
                 <span class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900">Built By Humans</span>
                 <span class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900"><u>About</u></span>
-                <span class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900"><u>Contact</u></span>
+                <a href="mailto:edwardipaguilar@gmail.com" class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900"><u>Contact</u></a>
             </div>
         </div>
     </div>
-    
-
+    <script>
+        document.getElementById('rsvp-button').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+            const emailAddressInput = document.getElementById('email-address');
+            const webAppUrl = 'https://script.google.com/macros/s/AKfycbz8vT5sow4wf61Na6rXJtEWYKFmi0MmvaN4CYZWdVDdQCi0gmFXpxJIBR6ZQF7CJhpeZQ/exec';
+            
+            fetch(webAppUrl + '?email=' + encodeURIComponent(emailAddressInput.value))
+            .then(response => response.json())
+            .then(result => {
+                if (result.result === 'success') {
+                    emailAddressInput.value = ''; // Clear the input field
+                    alert('RSVP successful!');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error: Could not submit RSVP.');
+            });
+        });
+    </script>
 </body>
 </html>
