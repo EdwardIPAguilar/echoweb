@@ -89,16 +89,23 @@
         document.getElementById('rsvp-button').addEventListener('click', function (event) {
             event.preventDefault(); // Prevent the form from submitting
             const emailAddressInput = document.getElementById('email-address');
+            const emailAddress = emailAddressInput.value;
             const webAppUrl = 'https://script.google.com/macros/s/AKfycbz8vT5sow4wf61Na6rXJtEWYKFmi0MmvaN4CYZWdVDdQCi0gmFXpxJIBR6ZQF7CJhpeZQ/exec';
-            
-            fetch(webAppUrl + '?email=' + encodeURIComponent(emailAddressInput.value))
+
+            fetch(webAppUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'email=' + encodeURIComponent(emailAddress)
+            })
             .then(response => response.json())
             .then(result => {
                 if (result.result === 'success') {
-                    emailAddressInput.value = ''; // Clear the input field
-                    alert('RSVP successful!');
+                emailAddressInput.value = ''; // Clear the input field
+                alert('RSVP successful! Welcome To Echo');
                 } else {
-                    alert('Error: ' + result.error);
+                alert('Error: ' + result.error);
                 }
             })
             .catch(error => {
