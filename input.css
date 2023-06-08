@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: "ProductSans";
+    src: url("Product Sans Regular.ttf");
+  }
