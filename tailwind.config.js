@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        ProductSans: ['ProductSans', 'sans-serif']
+        ProductSans: ['ProductSans', 'sans-serif'],
+        RedactionItalic: ['RedactionItalic', 'sans-serif']
       }
     },
   },

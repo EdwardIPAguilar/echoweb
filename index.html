@@ -44,20 +44,21 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 </style>
-<body class="">
+<body class="bg-[#e5e5e5]">
 
-    <div class="video-background">
+    <!-- <div class="video-background">
         <video autoplay muted loop>
             <source src="background.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="overlay"></div>
+        <div class="overlay"></div> -->
     </div>
 
     <div class="flex flex-col flex-grow"> 
         <div class="flex flex-row justify-center mt-5">
             <div class="bg-white max-w-xs py-2 flex items-center justify-center flex-row rounded-full shadow-md ring-2 ring-slate-700 ring-inset">
-                <span class="mx-5 text-xl sm:text-md lg:text-xl font-normal text-[#ff4f00]">εcho</span>
+                <!-- <span class="mx-5 text-xl sm:text-md lg:text-xl font-normal text-[#ff4f00]">εcho</span> -->
+                <img class="mx-5 w-[119px] h-[35px]" src="blackmainlogo.png" alt="Echo Logo">
             </div>
         </div>
     
@@ -65,27 +66,28 @@
         <div class="mx-auto -mt-[120px]  max-w-3xl flex flex-row items-center min-h-screen">
             <div class="space-y-8 mx-5">
                 <div class="text-center">
-                    <span class="font-ProductSans text-5xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl tracking-tight text-white">Bridging Silences, Unleashing Voices.</span>
+                    <span class="font-productSans text-5xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl tracking-tight text-black">Bridging Silences,</span>
+                    <span class="font-serif text-5xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl tracking-tight text-black">Unleashing Voices.</span>
                 </div>
                 <div class="text-center">
-                    <span class="leading-8 text-lg sm:text-lg lg:text-xl font-light text-gray-200">At Echo, we envision a world where barriers of silence cease to exist; where the symphony of human interaction is accessible to all. Leveraging the cutting edge of augmented reality and artificial intelligence, we’re pioneering solutions that transform sound into sight, helping the deaf community communicate with those they love.  
+                    <span class="leading-8 text-lg sm:text-lg lg:text-xl font-light tracking-wide text-gray-700">At Echo, we envision a world where barriers of silence cease to exist; where the symphony of human interaction is accessible to <i>all</i>. Leveraging the cutting edge of augmented reality and artificial intelligence, we’re pioneering solutions that help the deaf community communicate with those they love.  
                     </span>    
                 </div>
                 <div class="space-x-2 flex flex-row">
                         <label for="email-address" class="sr-only">Email Address</label>
-                        <input id="email-address" name="email" autocomplete="email" required class="text-md flex-auto rounded-md border-0 bg-white px-3.5 py-3 shadow-md ring-1 ring-inset ring-white/10 focus:ring-inset focus:ring-indigo-500" placeholder="Enter Your Email Here">
-                    <button type="submit" id="rsvp-button" class="flex-none rounded-md bg-[#ff4f00] hover:bg-slate-700 px-3.5 text-lg py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-normal">Notify Me On Launch</button>
+                        <input id="email-address" name="email" autocomplete="email" required class="text-md flex-auto bg-white px-3.5 py-3 rounded-md shadow-md ring-2 ring-slate-700 ring-inset" placeholder="Enter Your Email Here">
+                        <button type="submit" id="rsvp-button" class="flex-none rounded-md bg-[#ff4f00] hover:bg-slate-700 px-3.5 text-lg py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-normal">Notify Me On Launch</button>
                 </div>
             </div>
         </div>
     
-        <div class="flex flex-row justify-center items-center flex-wrap">
+        <div class="flex flex-row justify-center items-center flex-wrap mb-5">
             <div class="bg-white w-md py-2 flex items-center justify-center flex-row shadow-md ring-2 ring-slate-700 ring-inset">
                 <span class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900">Built By Humans</span>
                 <a href='about.html' class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900"><u>About</u></a>
                 <a href="mailto:edwardipaguilar@gmail.com" class="mx-5 text-md sm:text-md lg:text-lg font-light text-slate-900"><u>Contact</u></a>
             </div>
-        </div>        
+        </div>             
     </div>
     <script>
         document.getElementById('rsvp-button').addEventListener('click', function (event) {
