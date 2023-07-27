@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To Echo</title>
+    <link href="/dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/echofavicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body class="bg-[#020202] flex flex-col justify-between min-h-screen"> 
+    <!-- header -->
+      <header class="bg-black">
+        <nav class="mx-auto flex max-w-5xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5 px-10">
+              <img class="h-8 w-auto" src="white.png" alt="">
+            </a>
+          </div>
+          <div class="flex flex-1 justify-end px-10">
+            <button type="button" id='notify-me'class="flex-none rounded-full bg-[#e5e5e5] hover:bg-slate-300 px-3 py-1 shadow-md text-sm focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 font-light text-black">Notify me</button>
+          </div>
+        </nav>
+      </header>
+    <!-- main image -->
+      <div class="mx-auto max-w-4xl flex flex-row">
+            <img src="finalmain.png" alt="Vista Sneak Peak" width="900">
+        </div>
+    <!--text -->
+        <div class="text-center">
+            <span class="font-ProductSans text-6xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl tracking-wide text-white">Vista</span>
+            <div class="justify-between my-5">
+                <a  href="https://www.youtube.com/watch?v=Y7gBPAQGiSg" target="_blank" rel="noopener noreferrer" class="-ml-4 text-2xl px-3 font-normal text-[#FF4F00]"><span class="hover:underline">Watch the film</span><i class="fas fa-play fa-xs ml-2" style="color:#FF4F00;"></i></a>
+                <a href="#" id="notify-me-2" class="text-2xl font-normal text-[#FF4F00] hover:underline">Notify me</a>
+            </div>
+            <!--pop-up -->
+            <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                        <button type="button" id="close-modal" class="absolute right-3 top-3 bg-white rounded-full p-2 focus:outline-none">
+                            <i class="fas fa-times text-gray-500"></i>
+                        </button>
+                        <div class="px-6 py-5 space-y-4">
+                            <div class="px-3.5 text-xl font-normal text-gray-600">Join the waitlist to be notified on release</div>
+                            <div class="space-x-2 flex flex-row">
+                                <label for="email-address" class="sr-only">Email Address</label>
+                                <input id="email-address" name="email" autocomplete="email" required class="text-md flex-auto bg-white px-3.5 py-3 rounded-md shadow-md ring-2 ring-slate-700 ring-inset" placeholder="Enter Your Email Here">
+                                <button type="submit" id="rsvp-button" class="flex-none rounded-md bg-[#ff4f00] hover:bg-slate-700 px-3.5 text-lg py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-normal">Notify Me</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                                         
+            <div class="">
+                <span class="font-light text-2xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl tracking-tight text-[#e5e5e5]">Coming <i>very</i> soon</span>
+            </div>
+        </div>
+    </div> 
+    <div class="flex flex-row justify-center items-center w-full">
+        <div class="bg-[#e5e5e5] w-full py-2 flex items-center justify-center flex-row shadow-md">
+            <span class="mx-4 text-md sm:text-md lg:text-md font-light text-slate-900">Built in San Fransisco 🌉</span>
+            <a href="mailto:edwardipaguilar@gmail.com" class="text-md sm:text-md lg:text-md font-light text-slate-900"><u>Contact</u></a>
+        </div>
+    </div>     
+    <script>
+        document.getElementById('rsvp-button').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+            const emailAddressInput = document.getElementById('email-address');
+            const emailAddress = emailAddressInput.value;
+            const webAppUrl = 'https://script.google.com/macros/s/AKfycbz8vT5sow4wf61Na6rXJtEWYKFmi0MmvaN4CYZWdVDdQCi0gmFXpxJIBR6ZQF7CJhpeZQ/exec';
+
+            fetch(webAppUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'email=' + encodeURIComponent(emailAddress)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.result === 'success') {
+                emailAddressInput.value = ''; // Clear the input field
+                alert('RSVP successful! Welcome To Echo');
+                } else {
+                alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error: Could not submit RSVP.');
+            });
+        });
+
+        document.getElementById('notify-me').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('modal').classList.add('hidden');
+        });
+
+        document.getElementById('notify-me-2').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('modal').classList.add('hidden');
+        });
+
+    </script>
+</body>
+</html>

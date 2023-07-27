@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       fontFamily: {
         ProductSans: ['ProductSans', 'sans-serif'],
-        RedactionItalic: ['RedactionItalic', 'sans-serif']
+        'redaction': ['redaction', 'serif'],
+        'intel': ['intel', 'mono'],
       }
     },
   },
