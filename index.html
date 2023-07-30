@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/echofavicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
-  <body class="bg-black flex flex-col justify-between min-h-screen">
+  <body class="bg-black flex flex-col justify-between min-h-screen" style="height: calc(var(--vh, 1vh) * 100);">
     <!-- header -->
     <header class="bg-black">
       <nav class="mx-auto flex lg:max-w-5xl sm:max-w-screen md:max-w-screen items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -37,7 +37,7 @@
       </div>
       <!--pop-up -->
       <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex items-center justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
           </div>
@@ -84,7 +84,7 @@
 
       // Call the function to set the viewport height
       setViewportHeight();
-      
+
       var modal = document.getElementById('modal');
     
       document.getElementById('notify-me').addEventListener('click', function(event) {
