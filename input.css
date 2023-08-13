@@ -4,19 +4,8 @@
 
 
 @font-face {
-    font-family: "ProductSans";
-    src: url("Product Sans Regular.ttf");
-  }
-
-@font-face {
-    font-family: 'redaction';
-    src: url('Redaction-Italic.ttf');
-  }
-  
-@font-face {
-    font-family: 'intel';
-    src: url('intelone-mono-font-family-regular.ttf');
-  }
-
+  font-family: "arena";
+  src: url("/ARCADE_R.TTF");
+}
 
 
