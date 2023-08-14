@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Echo Labs</title>
     <meta name="description" content="we believe every word counts">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="dist/output.css" rel="stylesheet">
-    <title>Echo Labs</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Ensure the body doesn't have any default margins */
+        body {
+            margin: 0;
+        }
+        
+        /* Ensure the main content doesn't overflow */
+        .flex {
+            overflow-y: auto;
+        }
+    </style>
 </head>
-
-<body class="flex flex-col bg-black min-h-screen">
-    <div class="flex-grow flex flex-col justify-center items-center">
-        <div>
-            <h2 class="text-white font-arena text-xl">Echo Laboratories</h2>
-        </div>
-        <div>
-            <h2 class="text-white font-serif italic tracking-wider">AI-Powered Accessibility</h2>
-        </div>
-    </div>
-
-    <div class="w-full p-2 bg-[#ff4f00] border-t border-white shadow flex flex-col items-center justify-between">
-        <span class="text-sm text-white sm:text-center">© 2023 <a class="hover:underline">ECHO LABORATORIES, INC.</a></span>
-        <div class="text-sm text-white sm:text-center">
-            <a href="mailto:edwardipaguilar@gmail.com" class="pr-2 underline">Contact</a>
-            <a href="https://twitter.com/EchoLabsAI" class="pr-2 underline">Twitter</a>
-            <a href="https://open.spotify.com/playlist/3nB3etSdQ9Zljs7qgTAH9K?si=7b2afd87750543cb" class=" underline">Playlist</a>
-        </div>
+<body>
+    <div class="flex flex-col bg-black justify-center items-center h-screen">
+        <h2 class="text-white font-serif text-xl tracking-wider">ECHO LABORATORIES</h2>
+        <h2 class="text-white font-serif italic tracking-wider">AI-Powered Accessibility</h2>
+        <footer class="fixed bottom-0 left-0 z-20 w-full p-2 bg-[#ff4f00] border-t border-white shadow flex flex-col items-center justify-between">
+            <span class="text-sm text-white sm:text-center">© 2023 <a class="hover:underline">ECHO LABORATORIES, INC.</a></span>
+            <div class="text-sm text-white sm:text-center">
+                <a href="mailto:edwardipaguilar@gmail.com" class="pr-2 underline">Contact</a>
+                <a href="https://twitter.com/EchoLabsAI" class="pr-2 underline">Twitter</a>
+                <a href="https://open.spotify.com/playlist/3nB3etSdQ9Zljs7qgTAH9K?si=7b2afd87750543cb" class=" underline">Playlist</a>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

@@ -528,6 +528,22 @@ video {
   border-width: 0;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
 .mx-5 {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -556,6 +572,10 @@ video {
 
 .h-\[35px\] {
   height: 35px;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .min-h-screen {
@@ -697,10 +717,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.font-arena {
-  font-family: arena, sans;
 }
 
 .font-serif {
