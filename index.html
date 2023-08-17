@@ -5,34 +5,26 @@
     <meta name="description" content="we believe every word counts">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="dist/output.css" rel="stylesheet">
+    <style>
+      body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      min-height: -webkit-fill-available;
+    }
+    html {
+      height: -webkit-fill-available;
+    }
+    </style>
 </head>
-<style>
-  body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-html {
-  height: -webkit-fill-available;
-}
-</style>
 <body>
-    <div class="flex flex-col bg-black justify-between items-center h-screen">
-        <div class="items-center flex flex-col justify-center h-full">
-          <h2 class="text-white font-sans text-xl tracking-wider">[ ECHO LABS ]</h2>
-          <h2 class="text-white font-serif italic tracking-wider">AI-Powered Accessibility</h2>
-          <div class="py-1"></div>
-          <input type="email" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="enter your email here">
-          <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Sign up to learn more: <a class="font-medium text-blue-600 dark:text-blue-500">we're launching soon</a></p>
-
-        </div>
-        <!-- <div class="w-full p-2 bg-[#ff4f00] border-t border-white shadow flex flex-col items-center">
-            <span class="text-sm text-white sm:text-center">© 2023 <a class="hover:underline">ECHO LABORATORIES, INC.</a></span>
-            <div class="text-sm text-white sm:text-center">
-                <a href="mailto:edwardipaguilar@gmail.com" class="pr-2 underline">Contact</a>
-                <a href="https://twitter.com/EchoLabsAI" class="pr-2 underline">Twitter</a>
-                <a href="https://open.spotify.com/playlist/3nB3etSdQ9Zljs7qgTAH9K?si=7b2afd87750543cb" class=" underline">Playlist</a>
-            </div>
-        </div> --> 
+  <div class="flex flex-col bg-black justify-center items-center h-screen">
+      <h2 class="text-white font-sans text-xl tracking-wider">[ ECHO LABS ]</h2>
+      <h2 class="text-white font-serif italic tracking-wider">AI-Powered Accessibility</h2>
+      <div class="py-1"></div>
+      <div>
+        <input type="email" id="helper-text" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="enter your email here">
+        <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Sign up to learn more <a class="font-medium text-blue-600 dark:text-blue-500">we're launching soon</a></p>
+      </div>
     </div>
 </body>
 </html>
