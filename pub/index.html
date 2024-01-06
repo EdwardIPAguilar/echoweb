@@ -7,457 +7,253 @@
     <script type="module" src="demo_element.js"></script>
     <title>Echo Labs</title>
 </head>
-<style>
-.select-wrapper {
-    position: relative;
-    display: inline-block;
-}
 
-.custom-select {
-    appearance: none;  /* This will remove the default dropdown arrow */
-    width: 100%;
-    padding-right: 30px;
-}
-
-.select-wrapper::after {
-    content: "\261F";  /* This is a unicode character for a down arrow */
-    position: absolute;
-    right: 10px;  /* Adjust as needed */
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-#info-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 4%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-}
-
-#overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 49;
-    transition: opacity 0.5s ease;
-}
-
-#info-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#contact-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 4%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-}
-
-#contact-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#services-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 4%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-}
-
-#services-popup {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    overflow-y: auto;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-
-#navbar {
-    transition: all 0.3s ease-out;
-}
-
-#menu-toggle {
-    display: block;
-}
-
-@media screen and (min-width: 768px) {
-    #navbar {
-        display: flex !important;
-    }
-    #menu-toggle {
-        display: none;
-    }
-}
-
-</style>
-
-<body class=""> 
-    <nav class="flex flex-grow px-10 py-4 bg-white shadow-md justify-center">
-        <div class="max-w-7xl flex-grow flex justify-between flex-row items-center">
-            <div class="flex flex-row space-x-5">
-                <img src="logo.jpg" alt="Echo Labs Logo" class="" width="30">
-                <p class="font-semibold text-xl sm:text-2xl">Echo Labs</p>
-            </div>
-            <div id="navbar" class="hidden md:flex font-light text-lg flex-row md:space-x-20 space-x-5">
-                <a id='services-modal-open' href="#" class="hover:text-blue-400">Services</a>
-                <a id='open-modal' href="#" class="hover:text-blue-400">Mission</a>
-                <a id='contact-modal-open' href="#" class="hover:text-blue-400">Contact</a>
-            </div>
-            <button id="menu-toggle" type="button" class="md:hidden">
-                <i class="fa fa-bars"></i>
-            </button>
-            <button type="submit" class="w-full sm:w-auto sm:block hidden justify-center text-white bg-primary-600  text-sm hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                Get Started
-            </button>
-        </div>
-    </nav>
-    <div id="overlay">
-    </div>
-    <div id="info-popup" tabindex="-1" class="overflow-y-auto fixed z-50 w-full">
-        <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-            <div class="relative p-4 bg-white border-2 border-gray-300 rounded-lg shadow dark:bg-gray-800 md:p-8">
-                <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                    <div class="flex flex-row items-center pb-5 justify-between">
-                        <h3 class="text-xl sm:2xl font-bold text-gray-900 dark:text-white">Our Mission</h3>
-                        <button id="close-modal" type="button"  class="py-2 px-4 mr-2 sm:mr-0 w-auto text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
-                    </div>
-                    <p class='text-lg'>
-                        The gift of education should never be the privilege of the few but the right of the many. That's why we believe that captioning is more than just a line of text at the bottom of a screen. It’s a bridge to a world of ideas, a portal unlocking the potential of lectures, webinars, and classroom discussions for the nearly 70M Americans today who suffer from hearing impairment.<br><br>We’re starting by tearing down the cumbersome legacy systems that once made captioning expensive, slow, and insecure to make sure that everyone—regardless of hearing ability, language proficiency, or learning style—has an equal seat at the table.<br><br><u><b>Let’s democratize understanding</b></u>.
-                    </p>
-                </div>
-            </div>
+<body class="bg-[#193325]">
+<!-- <div class="bg-[#9EFF8A] text-center p-2 border-2">PRESS RELEASE: Echo Labs raises $7.7M pre-seed round, largest in Chicago history, backed by Silicon Valley's leading investors</div> -->
+<nav class="px-10 sm:px-20 py-5 bg-[#193325]">
+    <div class="flex flex-row items-center justify-between space-x-5">
+        <!-- <img src="logo.jpg" class="w-12"/> -->
+        <span class="text-white font-light text-xl">Echo Laboratories<span class="brother ml-2">For Higher Ed</span></span>
+        <div class="flex flex-row items-center justify-between space-x-5">
+            <button class="text-white hidden sm:block font-light text-lg hover:underline">Our Mission</button>
+            <button class="text-white hidden sm:block font-light text-lg hover:underline">Features</button>
+            <button class="text-white hidden sm:block font-light text-lg hover:underline">Q&A</button>
         </div>
     </div>
-    <div id="contact-popup" tabindex="-1" class="overflow-y-auto fixed z-50 w-full">
-        <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-            <div class="relative p-4 bg-white border-2 border-gray-300 rounded-lg shadow dark:bg-gray-800 md:p-8">
-                <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                    <div class="flex flex-row items-center pb-5 justify-between">
-                        <h3 class="text-2xl mb-2 sm:mb-0 font-bold text-gray-900 dark:text-white">Reach Out</h3>
-                        <button id="contact-modal-close" type="button"  class="py-2 px-4 mr-2 sm:mr-0  sm:w-auto w-auto  text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
-                    </div>
-                    <form action="#" class="mb-6">
-                        <div class="mb-6">
-                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                           <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required>
-                        </div>
-                        <div class="mb-6">
-                           <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-                           <input type="text" id="subject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your name here" required>
-                        </div>
-                        <div class="mb-6">
-                           <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
-                           <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
-                        </div>
-                        <a href="#" id='' class="inline-flex w-full items-center justify-center text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
-                            Send Message
-                            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </a>
-                     </form>
-                </div>
-            </div>
+</nav>
+<hr class="border-t border-gray-400 pb-5 mb-2"/>
+<div class="w-full px-10 sm:px-20">
+    <span class="woah tracking-wide text-[#D8FFD0] text-5xl sm:text-8xl">
+        Brilliant captions at an
+        <span class="hidden sm:inline"><br></span>
+        <span class="woah">unbeatable price -</span>
+        <span class="hidden sm:inline"><br></span>
+        <span class="brother">AI-powered accessibility.</span>
+    </span>
+    <br>
+    <div class="flex flex-col md:flex-row justify-between sm:items-center">
+        <span class="text-[#D8FFD0] text-2xl font-extralight">The future of education should feel like future.</span>
+        <div class="flex flex-row space-x-5">
+            <button onclick="const aboutUsSection = document.getElementById('about-us'); const yOffset = -60; const y = aboutUsSection.getBoundingClientRect().top + window.pageYOffset + yOffset; window.scrollTo({top: y, behavior: 'smooth'});"   class="border border-white text-white text-ultralight px-2 ml-0 md:ml-20 my-5 py-2">About Us<span class="ml-2">&rarr;</span></button>
+            <a href='https://ra4q8zazd2z.typeform.com/to/nS9xUNmc' class="bg-[#9EFF8A] hover:bg-white text-black text-ultralight px-2 ml-2 my-5 py-2">Schedule A Demo <span class="ml-2">&rarr;</span></a>
         </div>
     </div>
-    <div id="services-popup" tabindex="-1" class="overflow-y-auto fixed z-50 w-full">
-        <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-            <div class="relative p-4 bg-white border-2 border-gray-300 rounded-lg shadow dark:bg-gray-800 md:p-8">
-                <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                    <div class="flex flex-row items-center pb-5 justify-between">
-                        <h3 class="text-2xl mb-2 sm:mb-0 font-bold text-gray-900 dark:text-white">Services</h3>
-                        <button id="services-modal-close" type="button"  class="py-2 mr-2 sm:mr-0 sm:w-auto w-auto px-4 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
-                    </div>
-                        <h2 class="mb-4 text-4xl tracking-tight leading-tight font-extrabold text-gray-900 dark:text-white">Designed From The <mark>Ground Up</mark> For Higher Ed</h2>
-            <div class="py-2 mb-2">
-                <div class="flex">
-                    <div class="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 shrink-0">
-                        <svg class="w-5 h-5 text-primary-600 dark:text-primary-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">ADA, WACG 2.0, and FCC Compliant</h3>
-                        <p class="mb-2 font-light text-gray-500 dark:text-gray-400">Host code that you don't want to share with the world in private GitHub repos only accessible to you and people you share them with.</p>
-                    </div>
-                </div>
-                <div class="flex pt-8">
-                    <div class="flex justify-center items-center mr-4 w-8 h-8 bg-purple-100 rounded-full dark:bg-purple-900 shrink-0">
-                        <svg class="w-5 h-5 text-purple-600 dark:text-purple-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Intregation with Blackboard, Panapto, and Youtube</h3>
-                        <p class="mb-2 font-light text-gray-500 dark:text-gray-400">See the packages your project depends on, the repositories that depend on them, and any vulnerabilities detected.</p>
-                    </div>
-                </div>
-                <div class="flex pt-8">
-                    <div class="flex justify-center items-center mr-4 w-8 h-8 bg-teal-100 rounded-full dark:bg-teal-900 shrink-0">
-                        <svg class="w-5 h-5 text-teal-600 dark;text-teal-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div>
-                        <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Industry-Leading Security</h3>
-                        <p class="mb-2 font-light text-gray-500 dark:text-gray-400">Find vulnerabilities in custom code using static analysis. Prevent new vulnerabilities from being introduced by scanning every pull request.</p>
-                    </div>
-                </div>
+</div>
+<div class="w-full mt-5" style="height: 26rem">
+    <video autoplay muted loop class="object-cover h-full w-full" style="object-position: center;">
+        <source src="pexels_videos_1583096 (2160p).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="w-full pt-10 bg-[#EAEAE2]" id="about-us">
+    <div class="mx-10 sm:mx-20">
+        <span class="woah leading-tight tracking-wide text-black text-4xl sm:text-5xl">What makes us special</span>
+    </div>
+    <hr style='width: 35%' class="border-t border-gray-400 my-5 mx-10 sm:mx-20 mb-2"/>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 px-10 sm:px-20 pt-5 pb-10 sm:pt-10">
+        <div class="col">
+            <div class="flex flex-row items-center space-x-0 md:space-x-2">
+                <svg class="hidden md:block w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m7 13 6-6m-5-.5h.01m2.98 7H11m1.007-11.313a2.75 2.75 0 0 0 2.1.87 2.745 2.745 0 0 1 2.837 2.837 2.749 2.749 0 0 0 .87 2.1 2.747 2.747 0 0 1 0 4.014 2.748 2.748 0 0 0-.87 2.1 2.746 2.746 0 0 1-2.837 2.837 2.75 2.75 0 0 0-2.1.87 2.748 2.748 0 0 1-4.014 0 2.75 2.75 0 0 0-2.1-.87 2.744 2.744 0 0 1-2.837-2.837 2.749 2.749 0 0 0-.87-2.1 2.747 2.747 0 0 1 0-4.014 2.75 2.75 0 0 0 .87-2.1 2.745 2.745 0 0 1 2.838-2.837 2.749 2.749 0 0 0 2.1-.87 2.748 2.748 0 0 1 4.013 0Z"/>
+                  </svg>
+                  <h3 class="text-black  text-xl">Best Price,<br>Gauranteed</h3>
             </div>
-                </div>
+            <p class="text-black mt-5 text-ultralight">Echo Labs: Where AI meets human genius to offer you budget-friendly, out-of-this-world transcription costs. Affordability? Absolutely.            </p>
+        </div>
+        <div class="col">
+            <div class="flex flex-row items-center space-x-0 md:space-x-2">
+                <svg class="w-12 h-12 hidden md:block text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                  </svg>
+                  <h3 class="text-black text-xl">ADA Accuracy,<br>Always</h3>
             </div>
+            <p class="text-black mt-5 text-ultralight">Echo Labs doesn't just comply with the ADA, we set the standard. Expect nothing less than 99% accuracy, every time. </p>
+        </div>
+        <div class="col">
+            <div class="flex flex-row items-center space-x-0 md:space-x-2">
+                <svg class="w-12 h-12 hidden md:block text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+                  </svg>
+                  <h3 class="text-black text-xl">Speedier<br>Than a Comet</h3>
+            </div>
+            <p class="text-black mt-5 text-ultralight">24-hour turnaround isn't just fast, it's Echo Labs fast. Every order, every time – or your money back. No ifs, ands, or buts.            </p>
+        </div>
+        <div class="col">
+            <div class="flex flex-row items-center space-x-0 md:space-x-2">
+                <svg class="w-12 h-12 hidden md:block text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 21">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="1" d="M7.24 7.194a24.16 24.16 0 0 1 3.72-3.062m0 0c3.443-2.277 6.732-2.969 8.24-1.46 2.054 2.053.03 7.407-4.522 11.959-4.552 4.551-9.906 6.576-11.96 4.522C1.223 17.658 1.89 14.412 4.121 11m6.838-6.868c-3.443-2.277-6.732-2.969-8.24-1.46-2.054 2.053-.03 7.407 4.522 11.959m3.718-10.499a24.16 24.16 0 0 1 3.719 3.062M17.798 11c2.23 3.412 2.898 6.658 1.402 8.153-1.502 1.503-4.771.822-8.2-1.433m1-6.808a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/>
+                  </svg>
+                  <h3 class="text-black text-xl">Seamless LMS<br>Symphony</h3>
+            </div>
+            <p class="text-black mt-5 text-ultralight">Streamline your lecture captioning with Echo Labs' effortless integration into top LMSs. For instructors, it's automatic accessibility magic.</p>
         </div>
     </div>
-    <!-- main hero section -->
-    <div class="flex flex-grow justify-center py-10 px-10">
-        <div class="max-w-7xl flex-grow flex items-center">
-            <div class="lg:flex-1 sm:flex">
-                <div class="max-w-xl">
-                    <a href="#" class="inline-flex items-center justify-between px-1 py-1 pr-4 mb-6 text-sm text-gray-700 rounded-full bg-gray-200" role="alert">
-                        <span class="px-3 py-1 mr-3 text-xs text-white rounded-full bg-primary-600">News 🎉</span> <span class="text-sm font-medium">We're backed by AI Grant!</span> 
-                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+</div>
+<div data-tf-live="01HKGFETVAKWT2XEFB7KZ0R65C"></div><script src="//embed.typeform.com/next/embed.js"></script>
+<div class="bg-[#FFC8F0] px-10 sm:px-20 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
+        <div class="sm:mr-10 flex flex-col">
+            <span class="woah text-6xl">Say <span class="brother">sayonara</span><br>to legacy<br>transcription</span>
+            <span class="woah leading-tight mt-5 tracking-wide text-black text-lg">Accessibility isn’t just a priority — it's a commitment. But let's face it, the cost can be daunting. That’s where we come in. By blending AI with America's top transcriptionists, Echo Labs reduces costs while enhancing quality. Let's make education accessible for everyone, together.
+            </span>
+            <br>
+        </div>
+        <div class="w-full col-span-2 hidden lg:block">
+            <div class="relative overflow-x-auto shadow-sm sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                Feature
+                            </th>
+                            <th scope="col" class="px-6 py-3 bg-gray-100">
+                                Echo Labs
+                            </th>
+                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                The Other Guys
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                Cost Per Minute (human transcriber)
+                            </th>
+                            <td class="px-6 py-4 bg-gray-100">
+                                $0.40/minute
+                            </td>
+                            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                $1.25/minute
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                Guaranteed Accuracy
+                            </th>
+                            <td class="px-6 py-4 bg-gray-100">
+                                99%
+                            </td>
+                            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                80-95%
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                Standard Turnaround Time
+                            </th>
+                            <td class="px-6 py-4 bg-gray-100">
+                                24-Hours or less
+                            </td>
+                            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                3-6 Days
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                24/7 Customer Support
+                            </th>
+                            <td class="px-6 py-4 bg-gray-100">
+                                ✔ 
+                            </td>
+                            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                ❌
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                Accessibility Add-Ons
+                            </th>
+                            <td class="px-6 py-4 bg-gray-100">
+                                Audio Description, Epilepsy Warnings, ASL
+                            </td>
+                            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                Just transcription
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+   
+    </div>
+</div>
+<div class="bg-[#193325]">
+    <div class="flex my-10 flex-col justify-center items-center w-full">
+        <span class="tracking-wide text-center text-[#D8FFD0] text-4xl sm:text-5xl woah">Supercharge your accessibility efforts today</span>
+        <a href='https://ra4q8zazd2z.typeform.com/to/nS9xUNmc' class="bg-[#9EFF8A] hover:bg-white text-black text-ultralight px-2 ml-2 mt-5 py-2">Schedule A Demo <span class="ml-2">&rarr;</span></a>
+    </div>
+</div>
+<div class="bg-black sm:px-20 py-5">
+    <div class="">
+        <div class="sm:mx-10">
+            <div class="flex flex-col sm:flex-row items-center justify-between">
+                <span class="font-extralight text-white text-md">&copy; 2024 Echo Laboratories, Inc. All Rights Reserved.</span>
+                <div class="flex flex-row mx-5 sm: items-center space-x-5">
+                    <span class="text-white font-extralight text-md">hi@el.ai</span> 
+                    <a href="https://twitter.com/EchoLabsAI" data-tooltip-target="tooltip-twitter" class="inline-flex justify-center p-2 text-white rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                        <span class="sr-only">Twitter</span>
                     </a>
-                    <p class="sm:text-7xl text-5xl font-bold tracking-tight">Brilliant <a class="text-blue-500">Captions</a><br>For Higher Ed</p>
-                    <p class="text py-4 font-light leading-relaxed tracking-wider">At Echo Labs, <u>we believe every word counts</u>. That’s why we’re pioneering the next generation of captioning and transcription: affordable, rapid, and superhumanly accurate.</p>
-                    <form action="#" class="">
-                        <div class="justify-center items-center mx-auto mb-3 space-y-4 sm:flex lg:justify-start sm:space-y-0 sm:space-x-4">
-                            <div class="relative">
-                                <label for="email" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                </div>
-                                <input class="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:w-80 xl:w-96 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your email" type="email" id="email" required="">
-                            </div>
-                            <button type="submit" class="w-full sm:w-auto justify-center text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                Notify Me
-                                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </button>
-                        </div>
-                        <div class="text-sm text-left text-gray-500 dark:text-gray-300">Be notified when we launch. <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Coming Winter 2023.</a></div>
-                    </form>
-                </div>
+                    <span class="text-white font-extralight text-md">700 Alabama Street, San Francisco</span>
+                </div>           
             </div>
-            <demo-card class="flex-1"></demo-card>
+        </div>
     </div>
-</div> 
+</div>
 
-    <div class="flex flex-row min-w-full justify-center">
-        <div class="max-w-7xl mx-2 sm:mx-0 flex-grow flex items-center justify-center">
-            <div class="items-center text-center grid lg:grid-cols-5 grid-cols-2 gap-5">
-                <div class="bg-red-100 py-4 px-4 rounded-lg">
-                    <svg class="mx-auto mb-4 w-12 h-12 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    <h3 class="mb-2 text-xl tracking-tight font-bold text-red-600">Best Price Gaurantee</h3>
-                    <p class="mb-4 text-gray-500 dark:text-gray-400">60% less per minute* than the competition.</p>
-                </div>
-                <div class="bg-orange-100 py-4 px-4  rounded-lg">
-                    <svg class="mx-auto mb-4 w-12 h-12 text-orange-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
-                    <h3 class="mb-2 text-xl tracking-tight font-bold text-orange-600">Human Accuracy</h3>
-                    <p class="mb-4 text-gray-500 dark:text-gray-400">Industry-leading accuracy, guaranteed.</p>
-                </div>
-                <div class="bg-yellow-100  py-4 px-4 hidden sm:block  rounded-lg">
-                    <svg class="mx-auto mb-4 w-12 h-12 text-yellow-600 dark:text-primary-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.147 15.085a7.159 7.159 0 0 1-6.189 3.307A6.713 6.713 0 0 1 3.1 15.444c-2.679-4.513.287-8.737.888-9.548A4.373 4.373 0 0 0 5 1.608c1.287.953 6.445 3.218 5.537 10.5 1.5-1.122 2.706-3.01 2.853-6.14 1.433 1.049 3.993 5.395 1.757 9.117Z"/>
-                        </svg>
-                    <h3 class="mb-2 text-xl tracking-tight font-bold text-yellow-600">Rapid Turnaround</h3>
-                    <p class="mb-4 text-gray-500 dark:text-gray-400">Get content back faster than you can say 'woah'.</p>
-                </div>
-                <div class="bg-green-100  py-4 px-4 rounded-lg">
-                    <svg class="mx-auto mb-4 w-12 h-12 text-green-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16.5A2.493 2.493 0 0 1 6.51 18H6.5a2.468 2.468 0 0 1-2.4-3.154 2.98 2.98 0 0 1-.85-5.274 2.468 2.468 0 0 1 .921-3.182 2.477 2.477 0 0 1 1.875-3.344 2.5 2.5 0 0 1 3.41-1.856A2.5 2.5 0 0 1 11 3.5m0 13v-13m0 13a2.492 2.492 0 0 0 4.49 1.5h.01a2.467 2.467 0 0 0 2.403-3.154 2.98 2.98 0 0 0 .847-5.274 2.468 2.468 0 0 0-.921-3.182 2.479 2.479 0 0 0-1.875-3.344A2.5 2.5 0 0 0 13.5 1 2.5 2.5 0 0 0 11 3.5m-8 5a2.5 2.5 0 0 1 3.48-2.3m-.28 8.551a3 3 0 0 1-2.953-5.185M19 8.5a2.5 2.5 0 0 0-3.481-2.3m.28 8.551a3 3 0 0 0 2.954-5.185"/>
-                        </svg>
-                    <h3 class="mb-2 text-xl tracking-tight font-bold text-green-600">One-Click Integration</h3>
-                    <p class="mb-4 text-gray-500 dark:text-gray-400">Effortlessly plug into what matters to you.</p>
-                </div>
-                <div class="bg-blue-100  py-4 px-4 rounded-lg">
-                        <svg class="mx-auto mb-4 w-12 h-12 text-blue-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 21">
-                        <path d="M6.167 9.833a3 3 0 0 1 1.946-2.809L13 5.191a3 3 0 0 1 2.107 0l.893.334V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h8.641A14.03 14.03 0 0 1 6.167 9.833Z"/>
-                        <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Zm14.3 3.9-4.893-1.837a1.009 1.009 0 0 0-.7 0L8.815 8.9a1 1 0 0 0-.648.936 12.263 12.263 0 0 0 5.359 10.015 1 1 0 0 0 1.06 0 12.265 12.265 0 0 0 5.358-10.015A1 1 0 0 0 19.3 8.9Zm-5.236 8.866V9.068l3.866 1.45a10.241 10.241 0 0 1-3.871 7.245l.005.003Z"/>
-                        </svg>
-                    <h3 class="mb-2 text-xl tracking-tight font-bold text-blue-600">Secure & Encrypted</h3>
-                    <p class="mb-4 text-gray-500 dark:text-gray-400">2048-bit encryption right out-the-box.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex flex-grow justify-center">
-        <div class="flex flex-grow max-w-7xl rounded-lg bg-[#e5e5e5] mx-2 sm:mx-0 my-6 sm:my-10">
-            <div class="gap-8 items-center px-10 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 py-10">
-                <img class="w-full rounded-lg shadow-lg custom-img" src="uniii.png" alt="dashboard image">
-                <div class="mt-4 md:mt-0">
-                    <h2 class="mb-4 sm:text-4xl text-3xl tracking-tight font-extrabold text-gray-900 dark:text-white">We're on a mission to make accessibility affordable.</h2>
-                    <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">For decades, transcription and captioning has cost an arm and a leg. Making content accessible shouldn’t be expensive - it should be effortless, accurate, and affordable. That’s the future we believe in.</p>
-                    <a id="learn-more-btn" href="#" id='' class="inline-flex sm:w-auto w-full justify-center items-center text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-md sm:text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
-                        Learn More About Us
-                        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-                
-            </div>
-        </div>
-    </div>
-    
-    <footer class="flex-grow flex justify-center bg-gray-800">
-        <div class="max-w-7xl items-center p-4 flex flex-grow justify-between shadow">
-            <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
-                &copy; 2023 <a href="" class="hover:underline" target="_blank">Echo Laboratories, INC</a>. All rights reserved.
-            </p>
-            <div class="flex justify-center items-center space-x-1">
-              <a href="#" data-tooltip-target="tooltip-facebook" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="sr-only">Facebook</span>
-              </a>
-              <div id="tooltip-facebook" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                  Like us on Facebook
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-              <a href="#" data-tooltip-target="tooltip-twitter" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                  <span class="sr-only">Twitter</span>
-              </a>
-              <div id="tooltip-twitter" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                  Follow us on Twitter
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-              <a href="#" data-tooltip-target="tooltip-github" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"clip-rule="evenodd" />
-                  </svg>
-                  <span class="sr-only">Github</span>
-              </a>
-              <div id="tooltip-github" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                  Star us on GitHub
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-              <a href="#" data-tooltip-target="tooltip-dribbble" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="sr-only">Dribbble</span>
-              </a>
-              <div id="tooltip-dribbble" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                  Follow us on Dribbble
-                  <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-          </div>
-        </div>
-      </footer>
 </body>
-<script>
-    document.getElementById('open-modal').addEventListener('click', function() {
-        document.getElementById('info-popup').style.display = 'flex';
-        document.getElementById('overlay').style.display = 'block';
-        setTimeout(function() {
-            document.getElementById('info-popup').style.opacity = '1';
-        }, 50); // Delay to ensure the modal is displayed before starting the transition
-    });
-
-    document.getElementById('close-modal').addEventListener('click', function() {
-        document.getElementById('info-popup').style.opacity = '0';
-        document.getElementById('overlay').style.display = 'none';
-        setTimeout(function() {
-            document.getElementById('info-popup').style.display = 'none';
-        }, 500); // Delay to ensure the transition finishes before hiding the modal
-    });
-
-    document.getElementById('contact-modal-open').addEventListener('click', function() {
-        document.getElementById('contact-popup').style.display = 'flex';
-        document.getElementById('overlay').style.display = 'block';
-        setTimeout(function() {
-            document.getElementById('contact-popup').style.opacity = '1';
-        }, 50); // Delay to ensure the modal is displayed before starting the transition
-    });
-
-    document.getElementById('contact-modal-close').addEventListener('click', function() {
-        document.getElementById('contact-popup').style.opacity = '0';
-        document.getElementById('overlay').style.display = 'none';
-        setTimeout(function() {
-            document.getElementById('contact-popup').style.display = 'none';
-        }, 500); // Delay to ensure the transition finishes before hiding the modal
-    });
-
-    document.getElementById('services-modal-open').addEventListener('click', function() {
-        document.getElementById('services-popup').style.display = 'flex';
-        document.getElementById('overlay').style.display = 'block';
-        setTimeout(function() {
-            document.getElementById('services-popup').style.opacity = '1';
-        }, 50); // Delay to ensure the modal is displayed before starting the transition
-    });
-
-    document.getElementById('services-modal-close').addEventListener('click', function() {
-        document.getElementById('services-popup').style.opacity = '0';
-        document.getElementById('overlay').style.display = 'none';
-        setTimeout(function() {
-            document.getElementById('services-popup').style.display = 'none';
-        }, 500); // Delay to ensure the transition finishes before hiding the modal
-    });
-
-    document.getElementById('learn-more-btn').addEventListener('click', function() {
-    document.getElementById('info-popup').style.display = 'flex';
-    document.getElementById('overlay').style.display = 'block';
-    setTimeout(function() {
-        document.getElementById('info-popup').style.opacity = '1';
-    }, 50); // Delay to ensure the modal is displayed before starting the transition
-});
-
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    var navbar = document.getElementById('navbar');
-    if (navbar.classList.contains('hidden')) {
-        navbar.classList.remove('hidden');
-    } else {
-        navbar.classList.add('hidden');
-    }
-});
-</script>
 </html>
+<script>
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 0) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+</script>
+<style>
+    .brother {
+        font-family: 'FreightTextProBookItalic', sans-serif; /* Fallback to sans-serif in case the custom font doesn't load */
+    }
+
+    .woah {
+        font-family: 'FreightTextProBook', sans-serif; /* Fallback to sans-serif in case the custom font doesn't load */
+    }
+
+    @font-face {
+        font-family: 'FreightTextProBookItalic';
+        src: url('freight.otf') format('opentype');
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'FreightTextProBook';
+        src: url('fi.otf') format('opentype');
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    nav, nav {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 10; /* Ensure the nav is above other content */
+    }
+
+    .scrolled {
+        background-color: white !important; /* Override any other background styles */
+    }
+
+    .scrolled .text-white {
+        color: black !important; /* Override any other text color styles */
+    }
+    
+</style>
