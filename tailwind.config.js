@@ -10,7 +10,8 @@ module.exports = {
     },
   },
   fontFamily: {
-    Freight: ["Freight", "serif"]
+    Freight: ["Freight", "serif"],
+    Berkeley: ["Berkeley", 'sans-serif']
   },
   plugins: [],
 }
