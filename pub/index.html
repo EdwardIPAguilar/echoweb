@@ -19,9 +19,9 @@
         <!-- <img src="logo.jpg" class="w-12"/> -->
         <span class="text-white font-light text-xl">Echo Laboratories<span class="brother ml-2">For Higher Ed</span></span>
         <div class="flex flex-row items-center justify-between space-x-5">
-            <button class="text-white hidden sm:block font-light text-lg hover:underline">Our Mission</button>
-            <button class="text-white hidden sm:block font-light text-lg hover:underline">Features</button>
-            <button class="text-white hidden sm:block font-light text-lg hover:underline">Q&A</button>
+            <button onclick="const aboutUsSection = document.getElementById('about-us'); const yOffset = -60; const y = aboutUsSection.getBoundingClientRect().top + window.pageYOffset + yOffset; window.scrollTo({top: y, behavior: 'smooth'});" class="text-white hidden sm:block font-light text-lg hover:underline">Our Mission</button>
+            <button onclick="const featuresSection = document.getElementById('features'); const yOffset = -10; const y = featuresSection.getBoundingClientRect().top + window.pageYOffset + yOffset; window.scrollTo({top: y, behavior: 'smooth'});"  class="text-white hidden sm:block font-light text-lg hover:underline">Features</button>
+            <a href='https://ra4q8zazd2z.typeform.com/to/nS9xUNmc' class="text-white hidden sm:block font-light text-lg hover:underline">Schedule A Demo</a>
         </div>
     </div>
 </nav>
@@ -36,18 +36,22 @@
     </span>
     <br>
     <div class="flex flex-col md:flex-row justify-between sm:items-center">
-        <span class="text-[#d0faff] text-2xl font-extralight">The future of education should feel like future.</span>
+        <span class="text-[#D8FFD0] text-2xl font-extralight">The future of education should feel like future.</span>
         <div class="flex flex-row space-x-5">
-            <button onclick="const aboutUsSection = document.getElementById('about-us'); const yOffset = -60; const y = aboutUsSection.getBoundingClientRect().top + window.pageYOffset + yOffset; window.scrollTo({top: y, behavior: 'smooth'});"   class="border border-white text-white text-ultralight px-2 ml-0 md:ml-20 my-5 py-2">About Us<span class="ml-2">&rarr;</span></button>
-            <a href='https://ra4q8zazd2z.typeform.com/to/nS9xUNmc' class="bg-[#9EFF8A] hover:bg-white text-black text-ultralight px-2 ml-2 my-5 py-2">Schedule A Demo <span class="ml-2">&rarr;</span></a>
+            <button onclick="const aboutUsSection = document.getElementById('about-us'); const yOffset = -60; const y = aboutUsSection.getBoundingClientRect().top + window.pageYOffset + yOffset; window.scrollTo({top: y, behavior: 'smooth'});"   class="border border-white text-white text-ultralight px-2 ml-0 md:ml-20 mt-5 mb-2 py-2">About Us<span class="ml-2">&rarr;</span></button>
+            <a href='https://ra4q8zazd2z.typeform.com/to/nS9xUNmc' class="bg-[#9EFF8A] hover:bg-white text-black text-ultralight px-2 ml-2 mt-5 mb-2 py-2">Schedule A Demo <span class="ml-2">&rarr;</span></a>
         </div>
+    </div>
+    <div class="w-full text-right">
+        <a class="text-white text-sm font-extralight">Current Response Time: &lt;12 Hours</a>
     </div>
 </div>
 <div class="w-full mt-5" style="height: 26rem">
-    <video autoplay muted loop class="object-cover h-full w-full" style="object-position: center;">
+    <!-- <video autoplay muted loop class="object-cover h-full w-full" style="object-position: center;">
         <source src="pexels_videos_1583096 (2160p).mp4" type="video/mp4">
         Your browser does not support the video tag.
-    </video>
+    </video> -->
+    <img src="edwardaguilar_httpss.mj.runHaC7DKg3Mlw_in_this_style_beautiful__f5df550e-0fcc-4b3c-8633-c4a41b3f7ddd.png" alt="Beautiful Ivy League Trees" class="object-cover h-full w-full" style="object-position: center;">
 </div>
 <div class="w-full pt-10 bg-[#ffffff]" id="about-us">
     <div class="mx-10 sm:mx-20">
@@ -96,7 +100,7 @@
 <div data-tf-live="01HKGFETVAKWT2XEFB7KZ0R65C"></div><script src="//embed.typeform.com/next/embed.js"></script>
 <div class="bg-[#ffdfc8] px-10 sm:px-20 py-10">
     <div class="grid grid-cols-1 lg:grid-cols-3 items-center">
-        <div class="sm:mr-10 flex flex-col">
+        <div class="sm:mr-10 flex flex-col" id="features">
             <span class="woah tracking-wide text-6xl">Say <span class="brother">sayonara</span><br>to legacy<br>transcription</span>
             <span class="woah leading-tight mt-5 tracking-wide text-lg">Accessibility isn’t just a priority — it's a commitment. But let's face it, the cost can be daunting. That’s where we come in. By blending AI with America's top transcriptionists, Echo Labs reduces costs while enhancing quality. Let's make education accessible for everyone, together.
             </span>
